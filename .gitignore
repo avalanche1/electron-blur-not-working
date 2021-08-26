@@ -1,0 +1,37 @@
+# compiler
+/.cache/
+/.parcel-cache/
+/dist/
+
+# build
+/build/plugin/dev/
+/build/plugin/prod/
+/build/plugin/preprod/
+
+# tests
+/tests/coverage/
+
+# dependencies
+node_modules/
+npm-debug.log*
+yarn-error.log*
+yarn-debug.log*
+
+# security
+CREDENTIALS.MD
+
+# spec
+/spec/
+
+# Hidden
+/.git/
+/.idea/
+
+# macOS
+.DS_Store
+
+# Meteor
+.meteor/local
+
+# temp files
+~*.*

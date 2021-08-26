@@ -1,0 +1,245 @@
+root: true
+settings: { }
+
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaVersion: 2020
+  project: "./tsconfig.json"
+  sourceType: module
+
+env:
+  es2020: true
+  browser: true
+
+plugins:
+  - "@typescript-eslint"
+  - functional
+  - jest
+  - jest-dom
+  - no-unsanitized
+  - promise
+  - react
+  - react-hooks
+  - testing-library
+
+extends:
+  - "eslint:recommended"
+  - "plugin:@typescript-eslint/eslint-recommended"
+  - "plugin:@typescript-eslint/all"
+  #  todo-team: plugin:functional doesnt work (see features/_main/broker-can/fill-in-BGA-data/data/state/reducers/compose-principal-addresses.ts 31:10)
+  - "plugin:functional/all"
+  - "plugin:no-unsanitized/DOM"
+  - "plugin:promise/recommended"
+  - "plugin:react/all"
+  - "prettier"
+
+globals:
+  globalThis: "writable"
+#  devprint: "readonly"
+
+rules:
+  "@typescript-eslint/ban-ts-comment": warn
+  "@typescript-eslint/camelcase": off
+  "@typescript-eslint/class-name-casing": off
+  "@typescript-eslint/consistent-type-definitions": off
+  "@typescript-eslint/consistent-type-imports":
+    - error
+    - { prefer: 'no-type-imports' }
+  "@typescript-eslint/explicit-function-return-type":
+    - error
+    - allowExpressions: true
+  "@typescript-eslint/indent": off
+  #  "@typescript-eslint/interface-name-prefix": warn
+  #  todo-team: turn on and set up when have team
+  "@typescript-eslint/naming-convention": off
+  "@typescript-eslint/no-confusing-void-expression":
+    - error
+    - ignoreVoidOperator: true
+  "@typescript-eslint/non-nullable-type-assertion-style": off
+  "@typescript-eslint/no-unused-vars": warn
+  "@typescript-eslint/no-empty-function": off
+  "@typescript-eslint/no-empty-interface":
+    - error
+    - "allowSingleExtends": true
+  "@typescript-eslint/no-floating-promises": warn
+  "@typescript-eslint/no-magic-numbers": off
+  "@typescript-eslint/no-shadow":
+    - error
+    - builtinGlobals: true
+      allow:
+        - "browser"
+        - "doc"
+        - "name"
+        - "status"
+        - "tab"
+        - "url"
+  "@typescript-eslint/no-type-alias": off
+  "@typescript-eslint/no-use-before-define": off
+  "@typescript-eslint/prefer-readonly-parameter-types": off
+  "@typescript-eslint/prefer-regexp-exec": off
+  "@typescript-eslint/require-await": warn
+  "@typescript-eslint/space-before-function-paren": off
+  "@typescript-eslint/strict-boolean-expressions":
+    - error
+    - { allowNullableBoolean: true }
+  "@typescript-eslint/typedef": "off"
+
+  arrow-body-style: "off"
+  arrow-parens: warn
+  camelcase: off
+  comma-dangle: "off"
+  # todo-team: turn back on and decide what value is needed
+  complexity:
+    - off
+    - 3
+  func-style:
+    - warn
+    - declaration
+  functional/functional-parameters:
+    - error
+    - enforceParameterCount: false
+  # todo-team: delete partialAccounting[0]?.forms.form2; - if there's ? accessor - then the rule isnt triggered.
+  functional/immutable-data:
+    - "error"
+    - ignorePattern:
+        - "globalThis"
+        #        todo-team: cannot make this work with "^draft$"
+        - "draft"
+  #    - ignoreImmediateMutation
+  #  todo-3: Turn back on after they've responded to https://github.com/jonaskello/eslint-plugin-functional/issues/91
+  functional/prefer-readonly-type: off
+  functional/no-conditional-statement: off
+  functional/no-expression-statement:
+    - off
+    - ignorePattern:
+        - console
+        - devprint
+        - globalThis
+        - render
+  functional/no-mixed-type: off
+  # Tslint does a good enough job on this; and we dont always return a value from a fn.
+  functional/no-return-void: off
+  functional/no-try-statement: off
+  id-length:
+    - warn
+    - { min: 3, exceptions: [ _, el, fn, id, is, BA, BG, PL, UI ] }
+  id-match:
+    - error
+    - "^[a-zA-Z_0-9]*$"
+    - properties: true
+  jest/lowercase-name: "off"
+  jest/no-commented-out-tests: "warn"
+  lines-around-comment:
+    - warn
+    - ignorePattern: /prettier-ignore/
+  max-len:
+    - warn
+    - code: 90
+      comments: 110
+      tabWidth: 2
+      #      "^\\} from" part is for multi-line imports
+      ignorePattern: "Spec|import|it|^\\} from"
+      ignoreUrls: true
+  # todo-team: add custom rule that doesnt include imports: https://github.com/eslint/eslint/issues/12875
+  # https://blog.webiny.com/create-custom-eslint-rules-in-2-minutes-e3d41cb6a9a0
+  # https://github.com/eslint/eslint/blob/219aecb78bc646d44bad27dc775a9b3d3dc58232/tests/lib/rules/max-lines.js
+  max-lines:
+    #   todo:team: increase to error; because big modules is a warn sign of bad design.
+    - warn
+    - max: 60
+      skipBlankLines: true
+  max-params:
+    - warn
+    - 3
+  max-statements:
+    - warn
+    - 10
+  multiline-ternary: "off"
+  new-cap: off
+  no-console: warn
+  no-extra-boolean-cast: off
+  no-implicit-coercion:
+    - error
+    - allow:
+        - "!!"
+  no-inline-comments: "off"
+  no-magic-numbers:
+    - warn
+    - ignore:
+        - 0
+        - 1
+        - -1
+        - 404
+  no-multi-spaces: "off"
+  no-param-reassign:
+    - error
+    - props: true
+      ignorePropertyModificationsForRegex:
+        - draft
+  no-nested-ternary: "off"
+  no-return-await: warn
+  no-shadow: off
+  no-warning-comments: off
+  # TS does this better
+  no-undef: off
+  no-underscore-dangle:
+    - error
+    - "allow": [ "_id", "_text" ]
+  no-unneeded-ternary: "off"
+  no-unused-vars: off
+  no-use-before-define: "off"
+  no-useless-catch: warn
+  object-curly-newline: "off"
+  one-var: off
+  operator-linebreak:
+    - off
+    - before
+    - overrides:
+        ??: ignore
+        =: ignore
+  padding-line-between-statements: "off"
+  prefer-destructuring: warn
+  radix: "off"
+  react/display-name: "off"
+  react/forbid-component-props: off
+  react/jsx-curly-newline: off
+  react/jsx-filename-extension:
+    - error
+    - extensions:
+        - jsx
+        - tsx
+  react/jsx-indent: off
+  react/jsx-indent-props: off
+  react/jsx-max-depth: off
+  react/jsx-max-props-per-line: off
+  react/jsx-newline: off
+  # todo-3: sort out if this rule is useful
+  react/jsx-no-bind: off
+  #  todo-3: turn back on when have i18n
+  react/jsx-no-literals: off
+  react/jsx-one-expression-per-line: off
+  react/jsx-pascal-case: off
+  react/jsx-props-no-spreading:
+    - error
+    - explicitSpread: ignore
+  react/jsx-sort-props: warn
+  react/no-multi-comp: off
+  react/no-string-refs:
+    - error
+    - noTemplateLiterals: true
+  react/prop-types: "off"
+  react/require-default-props: off
+  react-hooks/rules-of-hooks: error
+  react-hooks/exhaustive-deps: warn
+  semi: warn
+
+overrides:
+  - files:
+      - "tests/**/*.[jt]s?(x)"
+      - "**/?(*.)+(spec|test).[jt]s?(x)"
+    extends:
+      - "plugin:jest/all"
+      - "plugin:jest-dom/recommended"
+      - "plugin:testing-library/react"
+    rules:
+      "no-magic-numbers": off

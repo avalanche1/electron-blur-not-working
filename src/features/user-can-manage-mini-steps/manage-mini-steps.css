@@ -1,0 +1,62 @@
+:root {
+  --primary-color: deepskyblue;
+  /*--secondary-color: #536390;*/
+  --font-color: white;
+  /*--bg-color: #fff;*/
+}
+/*// Spec-start: 1.1.1. App changes theme along with OS theme. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: black;
+  }
+}
+/* Spec-end. */
+
+body {
+  font-family: Helvetica, Roboto, sans-serif;
+  background: var(--primary-color);
+  color: var(--font-color);
+  user-select: none;
+}
+
+#dragHandle,
+#hideBtn {
+  width: 16px;
+  height: 16px;
+  position: fixed;
+  bottom: 0;
+}
+#dragHandle {
+  left: 0;
+  background: gold;
+  -webkit-app-region: drag;
+  cursor: move;
+}
+
+#minisList {
+  max-height: 165px;
+  /*// Explain: Doesnt look nice: seems like top of scrollbar is higher than 1st mini..
+  maybe will fix later.*/
+  /*margin-right: 2px;*/
+  overflow-y: scroll;
+  line-height: 1.5;
+  /*// Explain: Dev.*/
+  /*border: 1px blue solid;*/
+}
+#minisList::-webkit-scrollbar {
+  width: 5px;
+}
+/* Scrollbar background */
+/*#minisList::-webkit-scrollbar-track {*/
+/*  background: white;*/
+/*}*/
+#minisList::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 100px;
+}
+
+#hideBtn {
+  right: 0;
+  background: gray;
+  cursor: pointer;
+}

@@ -1,0 +1,10 @@
+/* https://css-tricks.com/almanac/properties/b/box-sizing/ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}

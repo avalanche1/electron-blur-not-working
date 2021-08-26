@@ -1,0 +1,15 @@
+{
+  "name": "voxel-steps-desktop",
+  "version": "0.1.0.0",
+  "description": "Electron application for Voxel Steps",
+  "author": "Mister Kat",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^13.1.7",
+    "prettier": "^2.3.2"
+  }
+}
