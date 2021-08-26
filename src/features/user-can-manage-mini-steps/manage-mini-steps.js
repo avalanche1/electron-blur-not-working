@@ -1,4 +1,4 @@
-const {app, BrowserWindow, screen, ipcMain} = require("electron");
+const {app, BrowserWindow, Menu, screen, ipcMain} = require("electron");
 const path = require("path");
 
 app.whenReady().then(open_window);
@@ -32,6 +32,7 @@ function open_window() {
     // Spec-start: 1.212.11.1. Windows are gracefully minimized and restored (with animation).
     minisWindow.blur();
     minisWindow.minimize();
+    // Menu.sendActionToFirstResponder('hide');
     setTimeout(() => restore_window(), 30 * 1000);
 
     // Explain: If the User is in another full-screen app when it's time to restore the window, - ..
@@ -45,4 +46,16 @@ function open_window() {
     // Spec-end.
   });
   // Spec-end.
+}
+
+function winReturnFocus() {
+  const dummyTransparentWindow = new BrowserWindow({
+    width: 1,
+    height: 1,
+    x: -100,
+    y: -100,
+    transparent: true,
+    frame: false,
+  });
+  dummyTransparentWindow.close();
 }

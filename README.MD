@@ -9,3 +9,6 @@ Steps to reproduce:
   - click the grey rectangle in bottom right corner of the blue window; this action is supposed to minimize the window and return focus to the previously focused app in the OS
     - [the code involved](https://github.com/avalanche1/electron-blur-not-working/blob/8c7d54b5b2a1c8c731faff693c7fdccdad25870f/src/features/user-can-manage-mini-steps/manage-mini-steps.js#L33)
   - as you can see by pressing Cmd+F2 - the focus remains in the Electron app
+
+
+  - the solution mentioned [here](https://github.com/electron/electron/issues/2640#issuecomment-136306916) doesn't work as well: uncomment line 35 (`Menu.sendActionToFirstResponder('hide')`) and relaunch the app
